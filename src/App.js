@@ -4,20 +4,26 @@ import { fetchLcboEndpoint } from "./api/lcbo.js";
 import SearchForm from "./searchform.js";
 
 class App extends Component {
-  componentDidMount() {
+  constructor(){
+    super();
+    this.state = {
+      lcboData: []
+    }
+  }
+
+  componentDidMount(product) {
     // example of making an API request to the LCBO API
-    lcboapi.com/products("products", {
-      q: "radler"
+    fetchLcboEndpoint("products", {
+      q: `{product}`
     }).then(data => {
       console.log(data);
     });
   }
+
   render() {
     return (
       <div>
-        <p>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>LCBO Drinks Near You</h1>
         <SearchForm/>
       </div>
     );
