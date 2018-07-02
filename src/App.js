@@ -5,7 +5,7 @@ import { fetchLcboEndpoint } from "./api/lcbo.js";
 class App extends Component {
   componentDidMount() {
     // example of making an API request to the LCBO API
-    fetchLcboEndpoint("products", {
+    lcboapi.com/products("products", {
       q: "radler"
     }).then(data => {
       console.log(data);
