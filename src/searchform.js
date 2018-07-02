@@ -15,8 +15,7 @@ class SearchForm extends Component {
     }
 
     componentDidMount() {
-        // example of making an API request to the LCBO API
-    //    this.getDrink("");
+        this.getDrink(" ");
     }
 
     getDrink(product){
@@ -27,8 +26,7 @@ class SearchForm extends Component {
             this.setState({
                 products: data.result
             });
-
-            console.log(this.state.productId, "data results");
+            console.log(this.state.products, "data results");
         });
     }
 
@@ -61,7 +59,7 @@ class SearchForm extends Component {
             </form>
             <section>
                 {this.state.products.map((product, i) => {
-                        return <Product key={product.i} name={product.name} id={product.id} bottle={product.package} price={product.price_in_cents} url={product.image_thumb_url}/>
+                        return <Product key={i} name={product.name} id={product.id} bottle={product.package} price={product.price_in_cents} url={product.image_thumb_url}/>
                 })}
                 
             </section>
