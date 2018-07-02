@@ -30,10 +30,6 @@ class SearchForm extends Component {
         });
     }
 
-    getStore(){
-
-    }
-
     updateSearch(e) {
         e.preventDefault();
         this.setState({

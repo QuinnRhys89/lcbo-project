@@ -11,9 +11,9 @@ class Product extends Component {
         this.getStore = this.getStore.bind(this);
     }
 
-    componentDidMount(){
-        this.getStore(" ");
-    }
+    // componentDidMount(){
+    //     this.getStore(" ");
+    // }
 
 
     getStore(id){
