@@ -4,15 +4,15 @@ class SearchForm extends Component {
     constructor(){
         super();
         this.state = {
-            search: ''
+            search: '',
+            submit: ''
         };
         this.updateSearch = this.updateSearch.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     updateSearch(e) {
-        e.target.value;
-        console.log(e.target.value);
+        e.preventDefault();
         this.setState({
             search: e.target.value.substr(0,20)
         });
@@ -20,19 +20,17 @@ class SearchForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        e.target.value;
-        console.log('I was clicked');
-        console.log(e.target.value);
-        // componentDidMount("radler");
+        this.setState({
+            submit: this.state.search
+        })
+        console.log(this.state.search);
     }
 
     render(){
-        return(
-            <form action="" onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.search} placeholder="Enter a drink here" onChange={this.updateSearch}/>
-                <input type="submit"/>
-            </form>
-        )
+        return <form action="" onSubmit={this.handleSubmit}>
+            <input type="text" value={this.state.search} placeholder="Enter a drink here" onChange={this.updateSearch} />
+            <input type="submit" />
+          </form>;
     }
 
 
