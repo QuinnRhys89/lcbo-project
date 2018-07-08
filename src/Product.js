@@ -1,27 +1,31 @@
 import React, { Component } from "react";
 import { fetchLcboEndpoint } from "./api/lcbo.js";
+import Map from "./map.js";
 
 class Product extends Component {
     constructor(){
         super();
         this.state = {
-            productId: ''
+            productId: '',
+            coordinates: []
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getStore = this.getStore.bind(this);
     }
-
-    // componentDidMount(){
-    //     this.getStore(" ");
-    // }
-
 
     getStore(id){
         console.log(id);
         fetchLcboEndpoint("stores", "product_id", {
             q: `${id}`
         }).then(data => {
-          console.log(data);
+            const coordinates = data.result.map(product => {
+                return [product.latitude, product.longitude]
+            }); 
+
+            this.setState({
+                coordinates
+            });
+            console.log(this.state.coordinates[0][0]);
         });
     }
 
@@ -46,7 +50,8 @@ class Product extends Component {
             <form action="" onSubmit={this.handleSubmit}>
               <input type="submit" value="Find Store" />
             </form>
-          </div>
+            <Map coordinates={this.state.coordinates}/>
+        </div>
     }
 }
 

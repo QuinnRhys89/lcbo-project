@@ -14,10 +14,6 @@ class SearchForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        this.getDrink(" ");
-    }
-
     getDrink(product){
         fetchLcboEndpoint("products", {
             q: `${product}`
@@ -26,7 +22,6 @@ class SearchForm extends Component {
             this.setState({
                 products: data.result
             });
-            console.log(this.state.products, "data results");
         });
     }
 
@@ -54,10 +49,12 @@ class SearchForm extends Component {
                 <input type="submit" />
             </form>
             <section>
-                {this.state.products.map((product, i) => {
-                        return <Product key={i} name={product.name} id={product.id} bottle={product.package} price={product.price_in_cents} url={product.image_thumb_url}/>
-                })}
+                {this.state.products.length !== 0 ? this.state.products.map((product, i) => {
+                        return <Product key={i} name={product.name} id={product.id} bottle={product.package} price={product.price_in_cents} url={product.image_thumb_url} />;
+                }):
                 
+                "Sorry, there's nothing that matches your search"
+            }  
             </section>
         </div>
           )
